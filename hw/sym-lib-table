@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name solder_iron-rescue)(type Legacy)(uri ${KIPRJMOD}/solder_iron-rescue.lib)(options "")(descr ""))
+)
