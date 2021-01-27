@@ -17,7 +17,7 @@ const int poti = A0;
 // pre-defined temp values
 const int temp_preheat = 150; //150
 const int temp_reflow = 250; //250
-const int offset = 0;
+const int offset = -20;
 // pre-defined seconds to hold the set temperature
 const int preheat_hold = 60000; //in ms (5s)
 const int reflow_hold = 30000; //in ms (20s)
@@ -149,7 +149,7 @@ static void hold_state(int hold_temp, int time_start, int hold_time, int hold_st
   while(millis() - time_start < hold_time){
     check_off();
     temp_now = thermocouple.readCelsius();
-    regulate_temp(temp_now, hold_temp);
+    regulate_temp_hold(temp_now, hold_temp);
     perc = int((float((millis() - time_start)) / float(hold_time)) * 100.00);
     draw_menu(temp_now, temp_poti, hold_state, perc);
     delay(200);
@@ -240,6 +240,15 @@ static void regulate_temp(int temp, int should) {
     digitalWrite(solidstate, LOW);
   }
   else if (should > temp + offset) {
+    digitalWrite(solidstate, HIGH);
+  }
+}
+
+static void regulate_temp_hold(int temp, int should){
+    if (should <= temp) {
+    digitalWrite(solidstate, LOW);
+  }
+  else if (should > temp) {
     digitalWrite(solidstate, HIGH);
   }
 }

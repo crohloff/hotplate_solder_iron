@@ -7,7 +7,7 @@ Sheet 1 1
 Title "Hotplate solder iron"
 Date "2021-01-26"
 Rev "1.0"
-Comp "crohloff Engineering"
+Comp ""
 Comment1 ""
 Comment2 ""
 Comment3 ""
